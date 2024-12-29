@@ -7,6 +7,7 @@ type token =
   | TRUE
   | SLASH
   | RETURN
+  | REF
   | RAT
   | PV
   | PRINT
@@ -14,6 +15,8 @@ type token =
   | PLUS
   | PF
   | NUM
+  | NULL
+  | NEW
   | MULT
   | INT
   | INF

@@ -24,7 +24,7 @@ let rec analyse_placement_instruction i depl reg=
         end
       | _ -> failwith "Erreur Interne"
     end
-  | AstType.Affectation(ia, e) -> AstPlacement.Affectation(ia,e),0
+  | AstType.Affectation(a, e) -> AstPlacement.Affectation(a,e),0
     
   | AstType.Conditionnelle (c, t, e) -> 
     let nt = analyse_placement_bloc t depl reg in 

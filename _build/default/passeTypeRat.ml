@@ -9,6 +9,20 @@ type t2 = Ast.AstType.programme
 
 
 
+let rec analyse_type_affectable a = 
+  match a with 
+  | AstTds.Deref a -> let (na,ta) = analyse_type_affectable a in 
+  begin 
+    match ta with
+    | Pointeur t -> (AstType.Deref na, t)
+    | _ -> failwith "Doit être un pointeur"
+  end
+  | AstTds.Ident i -> 
+    begin 
+      match info_ast_to_info i with 
+      | InfoVar(_,t,_,_) -> (AstType.Ident i,t)
+      | _ -> failwith "Erreur Interne"
+    end
 let rec analyse_type_expression e = 
   match e with 
   | AstTds.AppelFonction(info, le) -> 
@@ -24,13 +38,9 @@ let rec analyse_type_expression e =
       | _ -> failwith "Erreur Interne"
     end 
 
-  | AstTds.Ident info -> 
-    begin
-    match info_ast_to_info info with
-      | InfoVar(_,tid,_,_) -> 
-        AstType.Ident(info),tid
-      | _ -> failwith "Erreur Interne"
-    end 
+  | AstTds.Affectable a -> 
+    let (na, ta) = analyse_type_affectable a in 
+    (AstType.Affectable na,ta)
   | AstTds.Unaire(op, e1) -> 
     begin 
     let (ne, te) = analyse_type_expression e1 in 
@@ -62,6 +72,17 @@ let rec analyse_type_expression e =
 
   | AstTds.Entier i -> AstType.Entier i,Int
 
+  | AstTds.Address info -> 
+    begin 
+      match info_ast_to_info info with 
+      | InfoVar (_,t,_,_) -> (AstType.Address info, Pointeur t)
+      | _ -> failwith "Erreur Interne"
+    end 
+  
+  | AstTds.New t -> (AstType.New t,Pointeur t)
+
+  | AstTds.Null -> (AstType.Null,Pointeur(Undefined))
+
 
 let rec analyse_type_instruction i =
   match i with 
@@ -74,15 +95,12 @@ let rec analyse_type_instruction i =
         end
       else raise (TypeInattendu (te,t))
 
-  | AstTds.Affectation(info, e) -> 
-    begin
+  | AstTds.Affectation(a, e) -> 
+    let (na,ta) = analyse_type_affectable a in 
     let (ne, te) = analyse_type_expression e in
-      match (info_ast_to_info info) with
-      | InfoVar(_,tid,_,_) ->  
-        if est_compatible te tid then AstType.Affectation(info, ne)
-        else raise (TypeInattendu (te,tid))
-      | _ -> failwith "Erreur Interne"
-    end
+    if est_compatible te ta then AstType.Affectation(na, ne)
+    else raise (TypeInattendu (te,ta))
+      
 
   | AstTds.Affichage e -> 
     begin 

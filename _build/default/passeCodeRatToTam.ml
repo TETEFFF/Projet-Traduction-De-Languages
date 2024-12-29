@@ -7,6 +7,25 @@ open Tam
 type t1 = Ast.AstPlacement.programme
 type t2 = string
 
+
+let rec analyse_code_affectable a en_ecriture= 
+  match a with 
+  | AstType.Ident info ->  
+    begin  
+    match info_ast_to_info info with 
+      | InfoVar(_, tid, addr, reg) ->
+        let t = 
+        begin 
+          match tid with 
+          | Pointeur(t) -> getTaille t
+          | _ -> 0
+        end in  
+        if  en_ecriture then store (getTaille tid) addr reg,t else load (getTaille tid) addr reg,t
+      | _ -> failwith "Erreur Interne"
+    end
+  | AstType.Deref a -> let (code, taille) = analyse_code_affectable a en_ecriture in (code ^ 
+    if en_ecriture then storei taille else loadi taille),1
+
 let rec analyse_code_expression e = 
   match e with 
   | AstType.AppelFonction(info, le) -> 
@@ -16,12 +35,8 @@ let rec analyse_code_expression e =
       | _ -> failwith "Erreur interne"
     end 
 
-  | AstType.Ident info -> 
-    begin  
-      match info_ast_to_info info with 
-        | InfoVar(_, tid, addr, reg) -> load (getTaille tid) addr reg
-        | _ -> failwith "Erreur Interne"
-    end 
+  | AstType.Affectable a -> 
+    let (c,_) = analyse_code_affectable a false in c
   | AstType.Unaire(op, e1) ->  
     (analyse_code_expression e1) ^ 
     begin 
@@ -48,6 +63,17 @@ let rec analyse_code_expression e =
 
   | AstType.Entier i -> loadl_int i
 
+  | AstType.Null -> ""
+
+  | AstType.New t -> (loadl_int (getTaille t))^(subr "MAlloc")
+
+  | AstType.Address info -> 
+    begin  
+      match info_ast_to_info info with 
+        | InfoVar(_, _, addr, reg) -> loada addr reg
+        | _ -> failwith "Erreur Interne"
+      end
+
 let rec analyse_code_instruction i =
   match i with 
   | AstPlacement.Declaration(info, e) -> 
@@ -58,14 +84,9 @@ let rec analyse_code_instruction i =
       | _ -> failwith "Erreur Interne"
     end  
   
-  | AstPlacement.Affectation(ia, e) -> 
-    ( analyse_code_expression e ) ^ 
-    begin 
-      match info_ast_to_info ia with 
-        | InfoVar(_, tid, addr, reg) -> 
-          store (getTaille tid) addr reg
-        | _ -> failwith "Erruer Interne"
-    end
+  | AstPlacement.Affectation(a, e) -> 
+    let (code,_) = analyse_code_affectable a true in
+    ( analyse_code_expression e ) ^ code
     
   | AstPlacement.Conditionnelle (c, t, e) -> 
     let etiquetteE = getEtiquette() in 

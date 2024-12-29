@@ -4,6 +4,7 @@ type token =
   | TRUE
   | SLASH
   | RETURN
+  | REF
   | RAT
   | PV
   | PRINT
@@ -11,6 +12,8 @@ type token =
   | PLUS
   | PF
   | NUM
+  | NULL
+  | NEW
   | MULT
   | INT
   | INF
@@ -47,4 +50,5 @@ val xv_i : Ast.AstSyntax.instruction
 val xv_fonc : Ast.AstSyntax.fonction
 val xv_e : Ast.AstSyntax.expression
 val xv_bloc : Ast.AstSyntax.bloc
+val xv_aff : Ast.AstSyntax.affectable
 val menhir_end_marker : int
