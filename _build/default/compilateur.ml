@@ -43,7 +43,7 @@ end
 
 (* Compilateur créant l'AST *)
 
-(* module CompilateurRat = Compilateur (PasseTdsNop) (PasseTypeNop) (PassePlacementNop) (PasseCodeNop) *)
+module CompilateurRat = Compilateur (PasseTdsNop) (PasseTypeNop) (PassePlacementNop) (PasseCodeNop)
 
 
 (* + passe de résolution des identifiants *)
@@ -51,7 +51,7 @@ end
 
 (* + passe de typage *)
 
-module CompilateurRat = Compilateur (PasseTdsRat) (PasseTypeRat) (PassePlacementNop) (PasseCodeNop)
+(* module CompilateurRat = Compilateur (PasseTdsRat) (PasseTypeRat) (PassePlacementNop) (PasseCodeNop) *)
 
 (* + passe de placement mémoire *)
 

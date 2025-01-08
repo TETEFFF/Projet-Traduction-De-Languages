@@ -29,9 +29,11 @@
         "true",    TRUE;
         "false",   FALSE;
         "return",  RETURN;
-        (* nos modifications *)
+        (* Pointeurs *)
         "new",     NEW;
         "null",    NULL
+        (* Variables Globales *)
+        "static",  STATIC
       ];
     fun id ->
       match Hashtbl.find_opt kws id with

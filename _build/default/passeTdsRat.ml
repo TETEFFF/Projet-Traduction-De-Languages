@@ -192,6 +192,18 @@ and analyse_tds_bloc tds oia li =
    nli
 
 
+let analyse_tds_variable maintds (AstSyntax.Variable(t,n,e)) =
+  match chercherLocalement maintds n with
+  | None ->
+      let ne = analyse_tds_expression maintds e in
+      let info = InfoVar (n,Undefined, 0, "") in
+      let ia = info_to_info_ast info i
+      ajouter maintds n ia;
+      AstTds.Varibale (t, ia, ne)
+  | Some _ ->
+      raise (DoubleDeclaration n) 
+
+
 (* analyse_tds_fonction : tds -> AstSyntax.fonction -> AstTds.fonction *)
 (* Paramètre tds : la table des symboles courante *)
 (* Paramètre : la fonction à analyser *)

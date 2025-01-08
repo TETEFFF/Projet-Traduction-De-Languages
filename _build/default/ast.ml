@@ -68,13 +68,16 @@ and instruction =
   (* return d'une fonction *)
   | Retour of expression
 
-(* Structure des fonctions de Rat *)
+(* Variables Globales *)
+type variable = Variable of typ * string * expression
+
+  (* Structure des fonctions de Rat *)
 (* type de retour - nom - liste des paramètres (association type et nom) - corps de la fonction *)
 type fonction = Fonction of typ * string * (typ * string) list * bloc
 
 (* Structure d'un programme Rat *)
 (* liste de fonction - programme principal *)
-type programme = Programme of fonction list * bloc
+type programme = Programme of variable list * fonction list * bloc
 
 end
 
@@ -117,13 +120,15 @@ struct
     | Retour of expression * Tds.info_ast  (* les informations sur la fonction à laquelle est associé le retour *)
     | Empty (* les nœuds ayant disparus: Const *)
 
+  (* Variables globales *)
+  type variable = Variable of typ * Tds.info_ast * expression
 
   (* Structure des fonctions dans notre langage *)
   (* type de retour - informations associées à l'identificateur (dont son nom) - liste des paramètres (association type et information sur les paramètres) - corps de la fonction *)
   type fonction = Fonction of typ * Tds.info_ast * (typ * Tds.info_ast ) list * bloc
 
   (* Structure d'un programme dans notre langage *)
-  type programme = Programme of fonction list * bloc
+  type programme = Programme of variable list * fonction list * bloc
 
 end
 
@@ -172,11 +177,14 @@ type bloc = instruction list
   | Retour of expression * Tds.info_ast
   | Empty (* les nœuds ayant disparus: Const *)
 
+  
+type variable = Variable of Tds.info_ast * expression
+
 (* informations associées à l'identificateur (dont son nom), liste des paramètres, corps *)
 type fonction = Fonction of Tds.info_ast * Tds.info_ast list * bloc
 
 (* Structure d'un programme dans notre langage *)
-type programme = Programme of fonction list * bloc
+type programme = Programme of variable list * fonction list * bloc
 
 end
 
@@ -206,11 +214,15 @@ type bloc = instruction list * int (* taille du bloc *)
  | Retour of expression * int * int (* taille du retour et taille des paramètres *)
  | Empty (* les nœuds ayant disparus: Const *)
 
+
+type variable = Variable of Tds.info_ast * expression
+
+
 (* informations associées à l'identificateur (dont son nom), liste de paramètres, corps, expression de retour *)
 (* Plus besoin de la liste des paramètres mais on la garde pour les tests du placements mémoire *)
 type fonction = Fonction of Tds.info_ast * Tds.info_ast list * bloc
 
 (* Structure d'un programme dans notre langage *)
-type programme = Programme of fonction list * bloc
+type programme = Programme of  variable list * fonction list * bloc
 
 end

@@ -1,4 +1,4 @@
-# dune runtest tests/type/sans_fonction
+# dune runtest tests/
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Shared cache location: /home/tetef/.cache/dune/db
@@ -13,4 +13,49 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/tetef/.opam/4.11.0/bin/ocamlc.opt -config > /tmp/dune_5f624a_output
+$ /home/tetef/.opam/4.11.0/bin/ocamlc.opt -config > /tmp/dune_2ca277_output
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/menhir parser.mly --base parser --infer-write-query parser__mock.ml.mock)
+> File "parser.mly", line 68, characters 32-35:
+> Error: exp is undefined.
+[1]
+$ (cd _build/default && .ppx/423b3c0918a91461d11b9cd1259aca91/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="rat"' -o passeTdsRat.pp.ml --impl passeTdsRat.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+> File "passeTdsRat.ml", line 203, characters 2-3:
+> 203 |   | Some _ ->
+>         ^
+> Error: Syntax error
+[1]
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__Passe.cmo -c -impl passe.pp.ml)
+> File "passe.ml", line 22, characters 20-47:
+> 22 |   let analyser _ =  Ast.AstTds.Programme([],[])
+>                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Error: The constructor Ast.AstTds.Programme expects 3 argument(s),
+>        but is applied here to 2 argument(s)
+[2]
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PrinterAst.cmo -c -impl printerAst.pp.ml)
+> File "printerAst.ml", line 95, characters 26-62:
+> 95 |   let string_of_programme (Programme (fonctions, instruction)) =
+>                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Error: The constructor Programme expects 3 argument(s),
+>        but is applied here to 2 argument(s)
+[2]
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PasseCodeRatToTam.cmo -c -impl passeCodeRatToTam.pp.ml)
+> File "passeCodeRatToTam.ml", line 138, characters 13-59:
+> 138 | let analyser (Ast.AstPlacement.Programme (fonctions, prog)) = 
+>                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Error: The constructor Ast.AstPlacement.Programme expects 3 argument(s),
+>        but is applied here to 2 argument(s)
+[2]
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PassePlacementRat.cmo -c -impl passePlacementRat.pp.ml)
+> File "passePlacementRat.ml", line 88, characters 13-50:
+> 88 | let analyser (AstType.Programme (fonctions, prog)) = 
+>                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Error: The constructor AstType.Programme expects 3 argument(s),
+>        but is applied here to 2 argument(s)
+[2]
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PasseTypeRat.cmo -c -impl passeTypeRat.pp.ml)
+> File "passeTypeRat.ml", line 160, characters 13-49:
+> 160 | let analyser (AstTds.Programme (fonctions, prog)) = 
+>                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Error: The constructor AstTds.Programme expects 3 argument(s),
+>        but is applied here to 2 argument(s)
+[2]

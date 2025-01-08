@@ -36,15 +36,18 @@ open Ast.AstSyntax
 %token MULT
 %token INF
 %token EOF
-// nos modifications 
+// Pointeurs 
 %token REF
 %token NEW
 %token NULL
+// Variables Globales
+%token STATIC
 
 (* Type de l'attribut synthétisé des non-terminaux *)
 %type <programme> prog
 %type <instruction list> bloc
 %type <fonction> fonc
+%type <variable> var // variable globale
 %type <instruction> i
 %type <typ> typ
 %type <typ*string> param
@@ -58,9 +61,11 @@ open Ast.AstSyntax
 
 main : lfi=prog EOF     {lfi}
 
-prog : lf=fonc* ID li=bloc  {Programme (lf,li)}
+prog :  lvg=var* lf=fonc* ID li=bloc  {Programme (lvg,lf,li)}
 
 fonc : t=typ n=ID PO lp=separated_list(VIRG,param) PF li=bloc {Fonction(t,n,lp,li)}
+
+var : STATIC t=typ n=ID EQUAL e=exp PV { Variable(t, n, e) }
 
 param : t=typ n=ID  {(t,n)}
 
