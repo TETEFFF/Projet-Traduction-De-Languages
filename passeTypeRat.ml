@@ -15,7 +15,7 @@ let rec analyse_type_affectable a =
   begin 
     match ta with
     | Pointeur t -> (AstType.Deref na, t)
-    | _ -> failwith "Doit être un pointeur"
+    | _ -> raise (DerefNonPointeur ta)
   end
   | AstTds.Ident i -> 
     begin 

@@ -11,6 +11,9 @@ exception MauvaiseUtilisationIdentifiant of string
 exception TypeInattendu of typ * typ
 exception TypesParametresInattendus of typ list * typ list
 exception TypeBinaireInattendu of binaire * typ * typ (* les types sont les types réels non compatible avec les signatures connues de l'opérateur *)
+(* Levée lorsqu'on déréference un type autre qu'un pointeur *)
+(* retourne le type déréférencé *)
+exception DerefNonPointeur of typ 
 
 (* Utilisation illégale de return dans le programme principal *)
 exception RetourDansMain

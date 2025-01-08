@@ -10,12 +10,22 @@ type t2 = Ast.AstTds.programme
 
 
 
+(* analyse_tds_affectable : tds -> AstSyntax.affectable -> bool -> AstTds.Affectable*bool*int                                                 *)
+(* Paramètre tds : la table des symboles courante                                                                                             *)
+(* Paramètre e : l'affectable à analyser                                                                                                      *)
+(* Paramètre en_ecriture : booleen qui indique si l'affectable est en ecriture (à gauche d'une affectation) ou en lecture                     *)
+(* Retourne une triplet : Le premier élément: issu de la transformation de l'affectable en type AstTds.Affectable après analyse               *)
+(*                        de la bonne utilisation des identifiants. Le deuxième                                                               *)
+(*                      : Le deuxième élément : Booleen qui indique si l'affectable correspond à une constante                                *)
+(*                      : Le troisième élément : Entier qui vaut la valeur de la constante si l'affectable correspond à une constante, 0 sinon*)
+(* Erreur si mauvaise utilisation des identifiants                                                                                            *)
+
 
 let rec analyse_tds_affectable tds a en_ecriture = 
   match a with 
   | Ast.AstSyntax.Deref a -> 
     let na,_,_ = analyse_tds_affectable tds a en_ecriture in 
-      AstTds.Deref(na),0,false
+      AstTds.Deref(na),false,0
   | Ast.AstSyntax.Ident id -> 
     begin 
       match chercherGlobalement tds id with 
@@ -24,9 +34,9 @@ let rec analyse_tds_affectable tds a en_ecriture =
         begin 
           match info_ast_to_info ia with 
           | InfoFun (n,_,_) -> raise (MauvaiseUtilisationIdentifiant n)
-          | InfoVar _ -> Ast.AstTds.Ident(ia),0,false
+          | InfoVar _ -> Ast.AstTds.Ident(ia),false,0
           | InfoConst (n, v)-> if en_ecriture then raise( MauvaiseUtilisationIdentifiant n)
-          else (Ast.AstTds.Ident(ia)),v,true  
+          else (Ast.AstTds.Ident(ia)),true,v  
         end 
     end 
 
@@ -49,7 +59,7 @@ let rec analyse_tds_expression tds e =
                     | _ -> raise (MauvaiseUtilisationIdentifiant id)
     end
   | Ast.AstSyntax.Affectable a ->
-    let na,v,est_const = analyse_tds_affectable tds a false in if est_const then AstTds.Entier v else Ast.AstTds.Affectable na 
+    let na,est_const,v = analyse_tds_affectable tds a false in if est_const then AstTds.Entier v else Ast.AstTds.Affectable na 
 
   | Ast.AstSyntax.Binaire (b,e1,e2) ->  Ast.AstTds.Binaire (b,analyse_tds_expression tds e1,analyse_tds_expression tds e2)
 
