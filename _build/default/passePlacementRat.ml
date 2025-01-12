@@ -60,6 +60,17 @@ and analyse_placement_bloc li depl reg =
               (ni::nli, ti + tb)
 
   end
+
+let analyse_placement_variable depl (AstType.Variable(info, e)) = 
+  match info_ast_to_info info with 
+      | InfoVar(_,tid,_,_) -> 
+        begin
+        modifier_adresse_variable depl "SB" info;
+        AstPlacement.Variable(info,e),getTaille(tid)
+        end
+      | _ -> failwith "Erreur Interne"
+
+
 let analyse_placement_fonction (AstType.Fonction(info, lp, li)) = 
   let rec analyse_placement_parametres lp = 
     match lp with 
@@ -84,8 +95,17 @@ let analyse_placement_fonction (AstType.Fonction(info, lp, li)) =
   in let _ =  analyse_placement_parametres lp in   
   let nb = analyse_placement_bloc li 3 "LB" in 
   AstPlacement.Fonction(info, lp, nb)
+
+  let analyse_placement_variables variables =
+    let rec aux variables depl = 
+    match variables with 
+    | [] -> []
+    | v::q -> let (nv,ta) = analyse_placement_variable depl v in 
+           nv::(aux q (depl + ta))
+    in aux variables 0
     
-let analyser (AstType.Programme (fonctions, prog)) = 
+let analyser (AstType.Programme (variables, fonctions, prog)) = 
+  let nvs = analyse_placement_variables variables in 
   let nfs = List.map analyse_placement_fonction fonctions in 
   let np = analyse_placement_bloc prog 0 "SB" in 
-  AstPlacement.Programme(nfs, np)
+  AstPlacement.Programme(nvs,nfs, np)

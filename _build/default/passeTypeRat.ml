@@ -148,16 +148,30 @@ let rec analyse_type_instruction i =
 and analyse_type_bloc li = List.map analyse_type_instruction li
 
 
+let analyse_type_variable (AstTds.Variable(t,info,e)) = 
+  let (ne, te) = analyse_type_expression e in 
+      if est_compatible t te then 
+        begin
+        modifier_type_variable t info ; 
+        AstType.Variable (info, ne)
+        end
+      else raise (TypeInattendu (te,t))
+
+
 let analyse_type_fonction (AstTds.Fonction(t,info,lp,li))= 
     modifier_type_fonction t (List.map (fun (t,_) -> t) lp) info;
     let _ = List.map (fun (t,i) -> modifier_type_variable t i) lp in
     let nli = analyse_type_bloc li in 
     AstType.Fonction(info,(List.map (fun (_,i) -> i) lp),nli)
 
+let analyse_type_variables lv = 
+  List.map analyse_type_variable lv 
+
 let analyse_type_fonctions lf = 
   List.map analyse_type_fonction lf 
 
-let analyser (AstTds.Programme (fonctions, prog)) = 
+let analyser (AstTds.Programme (variables,fonctions, prog)) = 
+  let nvs = analyse_type_variables variables in 
   let nfs = analyse_type_fonctions fonctions in 
   let np = analyse_type_bloc prog in 
-  AstType.Programme(nfs, np)
+  AstType.Programme(nvs, nfs, np)

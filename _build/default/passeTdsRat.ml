@@ -197,9 +197,9 @@ let analyse_tds_variable maintds (AstSyntax.Variable(t,n,e)) =
   | None ->
       let ne = analyse_tds_expression maintds e in
       let info = InfoVar (n,Undefined, 0, "") in
-      let ia = info_to_info_ast info i
+      let ia = info_to_info_ast info in
       ajouter maintds n ia;
-      AstTds.Varibale (t, ia, ne)
+      AstTds.Variable (t, ia, ne)
   | Some _ ->
       raise (DoubleDeclaration n) 
 
@@ -238,8 +238,9 @@ match chercherGlobalement maintds n with
 (* Vérifie la bonne utilisation des identifiants et tranforme le programme
 en un programme de type AstTds.programme *)
 (* Erreur si mauvaise utilisation des identifiants *)
-let analyser (AstSyntax.Programme (fonctions,prog)) =
+let analyser (AstSyntax.Programme (variables,fonctions,prog)) =
   let tds = creerTDSMere () in
+  let nv = List.map (analyse_tds_variable tds) variables in
   let nf = List.map (analyse_tds_fonction tds) fonctions in
   let nb = analyse_tds_bloc tds None prog in
-  AstTds.Programme (nf,nb)
+  AstTds.Programme (nv,nf,nb)

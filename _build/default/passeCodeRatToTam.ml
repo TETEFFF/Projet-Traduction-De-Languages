@@ -126,6 +126,14 @@ and analyse_code_bloc (li,taille) =
   nli ^ pop 0 taille
 
 
+let analyse_code_variable (Ast.AstPlacement.Variable(info,e)) = 
+  let ne = analyse_code_expression e in
+    begin   
+      match info_ast_to_info info with 
+      | InfoVar(_, tid, addr, reg) -> (push (getTaille tid)) ^ ne ^ (store (getTaille tid) addr reg)
+      | _ -> failwith "Erreur Interne"
+    end 
+
 let analyse_code_fonction (Ast.AstPlacement.Fonction(info, _, (li, _))) = 
   begin 
     match info_ast_to_info info with 
@@ -135,7 +143,8 @@ let analyse_code_fonction (Ast.AstPlacement.Fonction(info, _, (li, _))) =
   ( analyse_code_bloc (li,0)) ^ 
   halt
 
-let analyser (Ast.AstPlacement.Programme (fonctions, prog)) = 
+let analyser (Ast.AstPlacement.Programme (variables,fonctions, prog)) = 
+let codeVariables = List.fold_right (fun elt tr -> (analyse_code_variable elt) ^ tr ) variables "" in 
 let codeFonctions = List.fold_right (fun elt tr -> (analyse_code_fonction elt) ^ tr ) fonctions "" in 
 let lMain = label "main" in
-getEntete() ^ codeFonctions ^ lMain ^(analyse_code_bloc prog) ^ halt
+getEntete() ^ codeVariables ^ codeFonctions ^ lMain ^(analyse_code_bloc prog) ^ halt
