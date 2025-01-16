@@ -1,0 +1,32 @@
+int f (int a) {
+    bool x = true;
+    rat y = [0/1];
+    int * p = (new int);
+    while x {
+       bool x = true;
+       rat y = [0/1];
+       rat * p = (new rat);
+       p = &y;
+    } 
+    bool x1 = true;
+    rat y1 = [0/1];
+    int z1 = 0;
+    return 0;
+}
+
+
+main {
+    bool x = true;
+    rat y = [0/1];
+    bool * p = (new bool);
+    p = &x;
+    while x {
+       int x = 0;
+       rat y = [0/1];
+       int * p = (new int);
+       p = &x;
+    } 
+    bool x1 = true;
+    rat y1 = [0/1];
+    int z1 = 0;
+}

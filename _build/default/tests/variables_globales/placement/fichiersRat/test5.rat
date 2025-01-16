@@ -1,0 +1,7 @@
+static bool x = true;
+static rat y = [0/1];
+static int z = 0;
+
+main {
+  int c = 0;
+}

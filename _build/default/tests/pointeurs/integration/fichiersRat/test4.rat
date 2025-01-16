@@ -1,0 +1,10 @@
+int* createPointer() {
+    int *p = new int;
+    *p = 10;
+    return p;
+}
+
+test {
+    int *x = createPointer();
+    print(*x);  
+}

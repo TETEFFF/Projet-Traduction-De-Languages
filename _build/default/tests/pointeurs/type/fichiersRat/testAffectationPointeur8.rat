@@ -1,0 +1,7 @@
+test{
+  bool x = true;
+  bool y = false;
+  bool * px = (new bool);
+  px = &x;
+  y = (*px);
+}

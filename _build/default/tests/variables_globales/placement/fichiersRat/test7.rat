@@ -1,0 +1,10 @@
+static bool x = true;
+main {
+
+    while x {
+       rat y = [0/1];
+       int z = 0;
+    } 
+    bool x1 = true;
+    int z1 = 0;
+}

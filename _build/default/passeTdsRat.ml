@@ -95,6 +95,18 @@ en une instruction de type AstTds.instruction *)
 (* Erreur si mauvaise utilisation des identifiants *)
 let rec analyse_tds_instruction tds oia i =
   match i with
+  | AstSyntax.VarStatLocale (t, n, e)-> 
+      begin
+      match chercherLocalement tds n with
+      | None ->
+          let ne = analyse_tds_expression tds e in
+          let info = InfoVar (n,Undefined, 0, "") in
+          let ia = info_to_info_ast info in
+          ajouter tds n ia;
+          AstTds.VarStatLocale (t, ia, ne)
+      | Some _ ->
+          raise (DoubleDeclaration n)
+      end
   | AstSyntax.Declaration (t, n, e) ->
       begin
         match chercherLocalement tds n with

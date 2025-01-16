@@ -1,0 +1,4 @@
+test{
+  rat x = [2/9];
+  rat y = &x;
+}

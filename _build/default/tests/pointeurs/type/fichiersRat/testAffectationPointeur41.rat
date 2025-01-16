@@ -1,0 +1,4 @@
+test{
+  rat a = [3/2];
+  a = (new int);
+}

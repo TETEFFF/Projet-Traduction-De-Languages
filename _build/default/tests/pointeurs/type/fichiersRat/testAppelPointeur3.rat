@@ -1,0 +1,11 @@
+int add1P (int * x, int y){
+  return ((*z)+1);
+}
+
+
+test{
+  int a = 9;
+  int * pa = &a;
+  int * z = pa;
+  int x = add1P (pa, (9+3));
+}

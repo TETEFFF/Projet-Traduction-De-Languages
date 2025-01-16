@@ -1,0 +1,4 @@
+test {
+    int x = 4;
+    int * x = (new int);
+}

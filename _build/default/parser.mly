@@ -76,6 +76,8 @@ aff :
 | PO MULT a=aff PF          {Deref (a)}
 
 i :
+// Variables statiques locales
+| STATIC t=typ n=ID EQUAL e1=e PV   {VarStatLocale (t,n,e1)}
 | t=typ n=ID EQUAL e1=e PV          {Declaration (t,n,e1)}
 // | n=ID EQUAL e1=e PV                {Affectation (n,e1)}
 | a=aff EQUAL e1=e PV               {Affectation (a, e1)}

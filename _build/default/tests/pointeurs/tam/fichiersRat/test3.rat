@@ -1,0 +1,5 @@
+main {
+  bool x = true;
+  bool * px = &x;
+  print x;
+}

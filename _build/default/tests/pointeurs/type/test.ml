@@ -370,7 +370,46 @@ let%test_unit "testAffectationPointeur6"=
     in raise ErreurNonDetectee
   with
   | TypeInattendu(Pointeur(Bool), Bool) -> ()
+
+  let%test_unit "testAppelPointeur1"= 
+  let _ = compiler (pathFichiersRat^"testAppelPointeur1.rat") in ()
   
+
+  let%test_unit "testAppelPointeur2"= 
+  let _ = compiler (pathFichiersRat^"testAppelPointeur2.rat") in ()
+
+
+  let%test_unit "testAppelPointeur3"= 
+  let _ = compiler (pathFichiersRat^"testAppelPointeur3.rat") in ()
+
+
+  let%test_unit "testAppelPointeur4"= 
+  let _ = compiler (pathFichiersRat^"testAppelPointeur4.rat") in ()
+
+
+  let%test_unit "testAppelPointeur5"= 
+  let _ = compiler (pathFichiersRat^"testAppelPointeur5.rat") in ()
+
+  let%test_unit "testAppelPointeur6"= 
+  try 
+    let _ = compiler (pathFichiersRat^"testAppelPointeur6.rat")
+    in raise ErreurNonDetectee
+  with
+  | TypesParametresInattendus _ -> ()
+
+  let%test_unit "testAppelPointeur7"= 
+  try 
+    let _ = compiler (pathFichiersRat^"testAppelPointeur7.rat")
+    in raise ErreurNonDetectee
+  with
+  | TypeInattendu(Int , Pointeur(Int)) -> ()
+
+  let%test_unit "testAppelPointeur8"= 
+  try 
+    let _ = compiler (pathFichiersRat^"testAppelPointeur8.rat")
+    in raise ErreurNonDetectee
+  with
+  | TypeInattendu(Pointeur(Int), Int) -> ()
 
 (* Fichiers de tests de la génération de code -> doivent passer la TDS *)
 open Unix

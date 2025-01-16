@@ -53,6 +53,8 @@ type expression =
 (* Instructions de Rat *)
 type bloc = instruction list
 and instruction =
+  (* Déclaration de variable statique locale *)
+  | VarStatLocale of typ * string * expression
   (* Déclaration de variable représentée par son type, son nom et l'expression d'initialisation *)
   | Declaration of typ * string * expression
   (* Affectation d'une variable représentée par un affectable et la nouvelle valeur affectée *)
@@ -112,6 +114,7 @@ struct
   + suppression de nœuds (const) *)
   type bloc = instruction list
   and instruction =
+    | VarStatLocale of typ * Tds.info_ast * expression
     | Declaration of typ * Tds.info_ast * expression (* le nom de l'identifiant est remplacé par ses informations *)
     | Affectation of  affectable * expression (* le nom de l'identifiant est remplacé par ses informations *)
     | Affichage of expression
@@ -162,11 +165,15 @@ type expression =
   | New of typ 
   | Address of Tds.info_ast
 
+
+(* Variable globale *)
+
 (* instructions existantes Rat *)
 (* = instruction de AstTds + informations associées aux identificateurs, mises à jour *)
 (* + résolution de la surcharge de l'affichage *)
 type bloc = instruction list
  and instruction =
+  | VarStatLocale of Tds.info_ast * expression
   | Declaration of Tds.info_ast * expression
   | Affectation of affectable * expression
   | AffichageInt of expression
@@ -177,7 +184,7 @@ type bloc = instruction list
   | Retour of expression * Tds.info_ast
   | Empty (* les nœuds ayant disparus: Const *)
 
-  
+
 type variable = Variable of Tds.info_ast * expression
 
 (* informations associées à l'identificateur (dont son nom), liste des paramètres, corps *)
@@ -201,21 +208,23 @@ type affectable = AstType.affectable
 (* = expression de AstType  *)
 type expression = AstType.expression
 
+
 (* instructions existantes dans notre langage *)
 type bloc = instruction list * int (* taille du bloc *)
- and instruction =
- | Declaration of Tds.info_ast * expression
- | Affectation of affectable * expression
- | AffichageInt of expression
- | AffichageRat of expression
- | AffichageBool of expression
- | Conditionnelle of expression * bloc * bloc
- | TantQue of expression * bloc
- | Retour of expression * int * int (* taille du retour et taille des paramètres *)
- | Empty (* les nœuds ayant disparus: Const *)
-
-
-type variable = Variable of Tds.info_ast * expression
+and instruction =
+  | VarStatLocale of Tds.info_ast * expression
+  | Declaration of Tds.info_ast * expression
+  | Affectation of affectable * expression
+  | AffichageInt of expression
+  | AffichageRat of expression
+  | AffichageBool of expression
+  | Conditionnelle of expression * bloc * bloc
+  | TantQue of expression * bloc
+  | Retour of expression * int * int (* taille du retour et taille des paramètres *)
+  | Empty (* les nœuds ayant disparus: Const *)
+  
+  
+  type variable = Variable of Tds.info_ast * expression
 
 
 (* informations associées à l'identificateur (dont son nom), liste de paramètres, corps, expression de retour *)

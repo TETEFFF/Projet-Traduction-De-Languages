@@ -1,0 +1,10 @@
+static bool a = false;
+
+test {
+    bool x = a;
+    if (x = true) {
+        a = false;
+    } else {
+        a = true;
+    }
+}

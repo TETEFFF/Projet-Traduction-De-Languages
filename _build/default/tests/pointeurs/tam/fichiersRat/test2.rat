@@ -1,0 +1,5 @@
+main {
+  rat x = [4/7];
+  rat * px = &x;
+  print (*px);
+}

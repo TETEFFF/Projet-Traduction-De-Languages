@@ -1,0 +1,4 @@
+static int x = (3+z);
+test {
+    int y = x;
+}

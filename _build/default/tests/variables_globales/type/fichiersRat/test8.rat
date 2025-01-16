@@ -1,0 +1,12 @@
+static int a = 7;
+static rat b = [7/3];
+
+int plus1 ( int y ){
+    int z = y;
+    return (a + 1);
+}
+
+test {
+    int y = plus1(4);
+    print (y + denom b);
+}

@@ -1,0 +1,10 @@
+int add1P (int * x, int y){
+  int * z = x;
+  return ((*z)+1);
+}
+
+
+test{
+  int * a = (new int);
+  int x = add1P (a, 4);
+}

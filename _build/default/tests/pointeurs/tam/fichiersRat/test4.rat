@@ -1,0 +1,11 @@
+prog {
+  int x = 1;
+  int y = 1;
+  int * px = &x;
+  int * py = &y;
+  if ((*px) = (*py)) {
+    print 18;
+  } else {
+    print 21;
+  }
+}

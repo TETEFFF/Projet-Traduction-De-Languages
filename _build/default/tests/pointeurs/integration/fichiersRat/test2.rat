@@ -1,0 +1,11 @@
+int setToFive(int *p) {
+    *p = 5;
+    return *p;
+}
+
+test {
+    int x;
+    int result = setToFive(&x);
+    print(result); 
+}
+

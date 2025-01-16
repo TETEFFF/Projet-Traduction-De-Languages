@@ -1,0 +1,10 @@
+static int x = 0;
+
+int f (int a) {
+    int y = 3;
+    return a;
+}
+
+
+main {
+}

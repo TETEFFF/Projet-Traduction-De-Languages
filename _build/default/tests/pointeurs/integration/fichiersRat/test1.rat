@@ -1,0 +1,6 @@
+test{
+    int *p;
+    p = new int;
+    *p = 42;
+    print(*p);
+}

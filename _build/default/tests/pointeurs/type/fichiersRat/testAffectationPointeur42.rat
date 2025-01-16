@@ -1,0 +1,4 @@
+test{
+  bool a = true;
+  a = (new int);
+}

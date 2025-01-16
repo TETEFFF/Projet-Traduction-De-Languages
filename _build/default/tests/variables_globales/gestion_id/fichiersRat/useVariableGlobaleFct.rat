@@ -1,0 +1,13 @@
+static int x = 0;
+
+int inc() {
+    x = (x + 1);
+    return x;
+}
+
+test {
+    int a = inc();
+    print(a);
+    a = inc();
+    print(a);
+}

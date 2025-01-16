@@ -1,0 +1,7 @@
+static int * a = (new int);
+
+test {
+    int x = 4;
+    a = &x;
+    (*a) = 2;
+}

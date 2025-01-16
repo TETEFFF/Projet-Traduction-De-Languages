@@ -1,0 +1,7 @@
+test{
+  int x = 8;
+  int y = 2;
+  int * px = (new int);
+  px = &x;
+  y = (*px);
+}

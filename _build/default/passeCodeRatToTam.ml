@@ -76,54 +76,66 @@ let rec analyse_code_expression e =
 
 let rec analyse_code_instruction i =
   match i with 
-  | AstPlacement.Declaration(info, e) -> 
-    let ne = analyse_code_expression e in
+  | AstPlacement.VarStatLocale(info, e) -> 
+    "",(let ne = analyse_code_expression e in
     begin   
       match info_ast_to_info info with 
       | InfoVar(_, tid, addr, reg) -> (push (getTaille tid)) ^ ne ^ (store (getTaille tid) addr reg)
       | _ -> failwith "Erreur Interne"
-    end  
+    end )
+    
+  | AstPlacement.Declaration(info, e) -> 
+    (let ne = analyse_code_expression e in
+    begin   
+      match info_ast_to_info info with 
+      | InfoVar(_, tid, addr, reg) -> (push (getTaille tid)) ^ ne ^ (store (getTaille tid) addr reg)
+      | _ -> failwith "Erreur Interne"
+    end ),""
   
   | AstPlacement.Affectation(a, e) -> 
-    let (code,_) = analyse_code_affectable a true in
-    ( analyse_code_expression e ) ^ code
+    (let (code,_) = analyse_code_affectable a true in
+    ( analyse_code_expression e ) ^ code),""
     
   | AstPlacement.Conditionnelle (c, t, e) -> 
     let etiquetteE = getEtiquette() in 
     let etiquetteFin = getEtiquette() in 
-    ( analyse_code_expression c ) ^ 
+    let (ct,cst) = analyse_code_bloc t in
+    let (ce,cse) = analyse_code_bloc e in
+    (( analyse_code_expression c ) ^ 
     ( jumpif 0 etiquetteE ) ^ 
-    ( analyse_code_bloc t ) ^
+    ( ct ) ^
     ( jump etiquetteFin ) ^ 
     label etiquetteE ^ 
-    ( analyse_code_bloc e) ^
-    label etiquetteFin
+    ( ce ) ^
+    label etiquetteFin),(cse^cst)
     
   | AstPlacement.TantQue(c, b) -> 
     let etiquetteDebut = getEtiquette() in 
     let etiquetteFin = getEtiquette() in 
-    label etiquetteDebut ^
+    let (cb,csb) = analyse_code_bloc b in
+    (label etiquetteDebut ^
     ( analyse_code_expression c ) ^ 
     ( jumpif 0 etiquetteFin ) ^ 
-    ( analyse_code_bloc b ) ^
+    ( cb ) ^
     ( jump etiquetteDebut ) ^ 
-    label etiquetteFin
+    label etiquetteFin),(csb)
   | AstPlacement.Retour(e, tailleRet, tailleParam) -> 
-( analyse_code_expression e ) ^ ( return tailleRet tailleParam)  
+(( analyse_code_expression e ) ^ ( return tailleRet tailleParam)),""  
 
-  | AstPlacement.AffichageInt e -> (analyse_code_expression e) ^ subr "IOut"
-  | AstPlacement.AffichageRat e -> (analyse_code_expression e) ^ call "SB" "ROut"
-  | AstPlacement.AffichageBool e -> (analyse_code_expression e) ^ subr "BOut"
+  | AstPlacement.AffichageInt e -> ((analyse_code_expression e) ^ subr "IOut"),""
+  | AstPlacement.AffichageRat e -> ((analyse_code_expression e) ^ call "SB" "ROut"),""
+  | AstPlacement.AffichageBool e -> ((analyse_code_expression e) ^ subr "BOut"),""
 
-  | AstPlacement.Empty -> ""
+  | AstPlacement.Empty -> "",""
 
 
 
 
  
 and analyse_code_bloc (li,taille) = 
-  let nli = List.fold_right (fun elt tr ->(analyse_code_instruction elt) ^ tr) li "" in 
-  nli ^ pop 0 taille
+  let (nli, cs) = List.fold_right (fun elt (tri, trs) -> let (ci, cs) = (analyse_code_instruction elt) in (ci ^ tri),(cs^trs)) 
+  li ("","") in 
+  (nli ^ pop 0 taille),cs
 
 
 let analyse_code_variable (Ast.AstPlacement.Variable(info,e)) = 
@@ -135,16 +147,17 @@ let analyse_code_variable (Ast.AstPlacement.Variable(info,e)) =
     end 
 
 let analyse_code_fonction (Ast.AstPlacement.Fonction(info, _, (li, _))) = 
-  begin 
+  let (cb,cs) = analyse_code_bloc (li,0) in
+  (begin 
     match info_ast_to_info info with 
     | InfoFun(nom, _ , _) -> label nom 
     | _ -> failwith "Erreur Interne"
   end ^ 
-  ( analyse_code_bloc (li,0)) ^ 
-  halt
+  (cb) ^ halt),cs
 
 let analyser (Ast.AstPlacement.Programme (variables,fonctions, prog)) = 
 let codeVariables = List.fold_right (fun elt tr -> (analyse_code_variable elt) ^ tr ) variables "" in 
-let codeFonctions = List.fold_right (fun elt tr -> (analyse_code_fonction elt) ^ tr ) fonctions "" in 
+let (codeFonctions,codeVariablesStatiques) = List.fold_right (fun elt (trf, trs) -> let (cf, cs) = (analyse_code_fonction elt) in (cf^trf),(cs^trs)  ) 
+fonctions ("","") in 
 let lMain = label "main" in
-getEntete() ^ codeVariables ^ codeFonctions ^ lMain ^(analyse_code_bloc prog) ^ halt
+getEntete() ^ codeVariables ^ codeVariablesStatiques ^codeFonctions ^ lMain ^( let (cp,_) = analyse_code_bloc prog in cp) ^ halt

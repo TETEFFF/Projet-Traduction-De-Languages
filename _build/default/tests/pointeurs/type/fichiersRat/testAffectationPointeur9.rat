@@ -1,0 +1,10 @@
+test{
+  int x = 18;
+  int * px = (new int);
+  int * * ppx = (new int *);
+  int * * * pppx = (new int * *);
+  px = &x;
+  ppx = &px;
+  pppx = &ppx;
+  (*(*(*pppx))) = 12;
+}

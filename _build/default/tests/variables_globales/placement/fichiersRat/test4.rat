@@ -1,0 +1,7 @@
+static rat x = [0/1];
+static rat y = [0/1];
+
+
+main {
+    rat z = [0/1];
+}

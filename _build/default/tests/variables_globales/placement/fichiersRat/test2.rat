@@ -1,0 +1,7 @@
+static int x = 0;
+static int y = 2;
+static int z = 5;  
+
+main {
+    int t = 2;
+}

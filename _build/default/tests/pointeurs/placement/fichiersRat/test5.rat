@@ -1,0 +1,13 @@
+main {
+    bool x = true;
+    rat y = [0/1];
+    int * pi = (new int);
+    while x {
+       bool x = true;
+       rat y = [0/1];
+       int * p = (new int);
+    } 
+    rat * p = (new rat);
+    rat y1 = [0/1];
+    int z1 = 0;
+}

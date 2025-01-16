@@ -1,0 +1,6 @@
+static int * a = (new int);
+
+test {
+    rat x = [3/5];
+    a = &x;
+}

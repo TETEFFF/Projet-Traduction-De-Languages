@@ -45,7 +45,7 @@ let pathFichiersRat = "../../../../../tests/variables_globales/placement/fichier
 (**********)
 
   let%test "test1_varGlob_1" = 
-  test (pathFichiersRat^"test1.rat")  "variable" ("y",1)  (0, "SB")
+  test (pathFichiersRat^"test1.rat")  "var" ("y",1)  (0, "SB")
 
   let%test "test1_x_1" = 
   test (pathFichiersRat^"test1.rat")  "main" ("x",1)  (1, "SB")

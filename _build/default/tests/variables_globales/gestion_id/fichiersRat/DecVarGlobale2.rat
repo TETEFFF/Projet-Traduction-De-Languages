@@ -1,0 +1,5 @@
+static int x = y;
+test {
+    int y =  3;
+    print(x);
+}

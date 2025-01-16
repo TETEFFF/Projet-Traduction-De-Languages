@@ -1,0 +1,6 @@
+test{
+  bool x = false;
+  bool * px = (new bool);
+  px = &x;
+  (*px) = [1/8];
+}

@@ -1,0 +1,7 @@
+test{
+  rat x = [3/2];
+  rat * px = (new rat);
+  rat * py = (new rat);
+  px = &x;
+  py = px;  
+}

@@ -1,0 +1,4 @@
+test{
+  int x = 2;
+  x = (new int);
+}

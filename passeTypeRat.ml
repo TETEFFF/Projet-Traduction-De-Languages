@@ -85,7 +85,16 @@ let rec analyse_type_expression e =
 
 
 let rec analyse_type_instruction i =
-  match i with 
+  match i with
+  | AstTds.VarStatLocale(t, info, e) -> 
+    let (ne, te) = analyse_type_expression e in 
+      if est_compatible t te then 
+        begin
+        modifier_type_variable t info ; 
+        AstType.VarStatLocale (info, ne)
+        end
+      else raise (TypeInattendu (te,t))
+  
   | AstTds.Declaration(t, info, e) -> 
     let (ne, te) = analyse_type_expression e in 
       if est_compatible t te then 

@@ -1,0 +1,12 @@
+static rat x = [3/4];
+static rat y = x;
+
+rat func () {
+    x = (x + [1/2]);
+    return x;
+}
+main {
+    rat a = (x + y);
+    print a;
+    print func ();
+}

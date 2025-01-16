@@ -1,0 +1,12 @@
+static bool x = true;
+
+main {
+    if x {
+       rat y = [0/1];
+       int z = 0;
+    } else {
+       rat y = [0/1];
+       int z = 0;
+    }
+    bool x1 = true;
+}

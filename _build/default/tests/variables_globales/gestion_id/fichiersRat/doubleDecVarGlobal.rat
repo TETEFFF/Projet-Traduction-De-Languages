@@ -1,0 +1,7 @@
+static int x = 4;
+static rat x = [3/8];
+
+main {
+    int a = (x + 5);
+    print a;
+}

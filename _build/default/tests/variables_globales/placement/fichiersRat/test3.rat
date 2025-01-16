@@ -1,0 +1,6 @@
+static bool x = true;
+static bool y = true;
+
+main {
+    bool z = true;
+}

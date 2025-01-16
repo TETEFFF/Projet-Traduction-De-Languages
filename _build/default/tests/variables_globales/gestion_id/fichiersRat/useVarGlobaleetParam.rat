@@ -1,0 +1,10 @@
+static int x = 5;
+
+int add(int y) {
+    return (x + y);
+}
+
+test {
+    int result = add(10);
+    print(result);
+}
