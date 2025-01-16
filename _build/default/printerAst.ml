@@ -92,7 +92,7 @@ struct
                                         ((List.fold_right (fun i tq -> (string_of_instruction i)^tq) li ""))^"\n"
 
   (* Conversion d'un programme Rat *)
-  let string_of_programme (Programme (fonctions, instruction)) =
+  let string_of_programme (Programme (variables,fonctions, instruction)) =
     (List.fold_right (fun f tq -> (string_of_fonction f)^tq) fonctions "")^
     (List.fold_right (fun i tq -> (string_of_instruction i)^tq) instruction "")
 

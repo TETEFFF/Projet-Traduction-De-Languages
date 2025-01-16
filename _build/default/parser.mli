@@ -5,6 +5,7 @@ type token =
   | WHILE
   | VIRG
   | TRUE
+  | STATIC
   | SLASH
   | RETURN
   | REF

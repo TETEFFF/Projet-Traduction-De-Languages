@@ -65,7 +65,7 @@ prog :  lvg=var* lf=fonc* ID li=bloc  {Programme (lvg,lf,li)}
 
 fonc : t=typ n=ID PO lp=separated_list(VIRG,param) PF li=bloc {Fonction(t,n,lp,li)}
 
-var : STATIC t=typ n=ID EQUAL e=exp PV { Variable(t, n, e) }
+var : STATIC t=typ n=ID EQUAL exp=e PV { Variable(t, n, exp) }
 
 param : t=typ n=ID  {(t,n)}
 

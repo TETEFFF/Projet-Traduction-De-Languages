@@ -2,6 +2,7 @@ type token =
     WHILE
   | VIRG
   | TRUE
+  | STATIC
   | SLASH
   | RETURN
   | REF
@@ -32,6 +33,7 @@ type token =
   | AO
   | AF
 val menhir_begin_marker : int
+val xv_var : Ast.AstSyntax.variable
 val xv_typ : Type.typ
 val xv_separated_nonempty_list_VIRG_param_ : (Type.typ * string) list
 val xv_separated_nonempty_list_VIRG_e_ : Ast.AstSyntax.expression list
@@ -44,6 +46,7 @@ val xv_loption_separated_nonempty_list_VIRG_param__ :
   (Type.typ * string) list
 val xv_loption_separated_nonempty_list_VIRG_e__ :
   Ast.AstSyntax.expression list
+val xv_list_var_ : Ast.AstSyntax.variable list
 val xv_list_i_ : Ast.AstSyntax.bloc
 val xv_list_fonc_ : Ast.AstSyntax.fonction list
 val xv_i : Ast.AstSyntax.instruction

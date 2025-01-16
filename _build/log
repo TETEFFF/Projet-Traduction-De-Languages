@@ -1,4 +1,4 @@
-# dune runtest tests/gestion_id/
+# dune runtest tests/variables_globales/placement/
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Shared cache location: /home/tetef/.cache/dune/db
@@ -13,46 +13,95 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/tetef/.opam/4.11.0/bin/ocamlc.opt -config > /tmp/dune_a830fb_output
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/menhir parser.mly --base parser --infer-write-query parser__mock.ml.mock)
-> File "parser.mly", line 68, characters 32-35:
-> Error: exp is undefined.
-[1]
-$ (cd _build/default && .ppx/423b3c0918a91461d11b9cd1259aca91/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="rat"' -o passePlacementRat.pp.ml --impl passePlacementRat.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
-$ (cd _build/default && .ppx/423b3c0918a91461d11b9cd1259aca91/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="rat"' -o passeCodeRatToTam.pp.ml --impl passeCodeRatToTam.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
-$ (cd _build/default && .ppx/423b3c0918a91461d11b9cd1259aca91/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="rat"' -o passeTdsRat.pp.ml --impl passeTdsRat.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
-$ (cd _build/default && .ppx/423b3c0918a91461d11b9cd1259aca91/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="rat"' -o passeTypeRat.pp.ml --impl passeTypeRat.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__Passe.cmo -c -impl passe.pp.ml)
-> File "passe.ml", line 22, characters 20-47:
-> 22 |   let analyser _ =  Ast.AstTds.Programme([],[])
->                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> Error: The constructor Ast.AstTds.Programme expects 3 argument(s),
->        but is applied here to 2 argument(s)
+$ /home/tetef/.opam/4.11.0/bin/ocamlc.opt -config > /tmp/dune_e52c4b_output
+$ (cd _build/default && .ppx/423b3c0918a91461d11b9cd1259aca91/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="variables_globales_placement"' -o tests/variables_globales/placement/test.pp.ml --impl tests/variables_globales/placement/test.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamldep.opt -modules -impl tests/variables_globales/placement/test.pp.ml) > _build/default/tests/variables_globales/placement/.variables_globales_placement.objs/variables_globales_placement__Test.impl.d
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I tests/variables_globales/placement/.variables_globales_placement.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -I .rat.objs/byte -no-alias-deps -opaque -open Variables_globales_placement -o tests/variables_globales/placement/.variables_globales_placement.objs/byte/variables_globales_placement__Test.cmo -c -impl tests/variables_globales/placement/test.pp.ml)
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I tests/variables_globales/placement/.variables_globales_placement.objs/byte -I tests/variables_globales/placement/.variables_globales_placement.objs/native -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -I .rat.objs/byte -I .rat.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Variables_globales_placement -o tests/variables_globales/placement/.variables_globales_placement.objs/native/variables_globales_placement__Test.cmx -c -impl tests/variables_globales/placement/test.pp.ml)
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -a -o tests/variables_globales/placement/variables_globales_placement.cmxa tests/variables_globales/placement/.variables_globales_placement.objs/native/variables_globales_placement.cmx tests/variables_globales/placement/.variables_globales_placement.objs/native/variables_globales_placement__Test.cmx)
+$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -w -24 -g -g -o tests/variables_globales/placement/.variables_globales_placement.inline-tests/inline_test_runner_variables_globales_placement.exe /home/tetef/.opam/4.11.0/lib/ocaml/unix.cmxa -I /home/tetef/.opam/4.11.0/lib/ocaml /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config/inline_test_config.cmxa /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types/base_internalhash_types.cmxa -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types /home/tetef/.opam/4.11.0/lib/base/caml/caml.cmxa /home/tetef/.opam/4.11.0/lib/sexplib0/sexplib0.cmxa /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib/shadow_stdlib.cmxa /home/tetef/.opam/4.11.0/lib/base/base.cmxa -I /home/tetef/.opam/4.11.0/lib/base /home/tetef/.opam/4.11.0/lib/jane-street-headers/jane_street_headers.cmxa /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib/ppx_sexp_conv_lib.cmxa /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib/ppx_compare_lib.cmxa /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmxa /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib/ppx_hash_lib.cmxa /home/tetef/.opam/4.11.0/lib/time_now/time_now.cmxa -I /home/tetef/.opam/4.11.0/lib/time_now /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib/ppx_inline_test_lib.cmxa /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib/ppx_here_lib.cmxa /home/tetef/.opam/4.11.0/lib/ppx_expect/common/expect_test_common.cmxa /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types/expect_test_config_types.cmxa /home/tetef/.opam/4.11.0/lib/ppx_expect/collector/expect_test_collector.cmxa -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector /home/tetef/.opam/4.11.0/lib/ppx_expect/config/expect_test_config.cmxa rat.cmxa tests/variables_globales/placement/variables_globales_placement.cmxa /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runner/lib/ppx_inline_test_runner_lib.cmxa -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runner/lib /home/tetef/.opam/4.11.0/lib/stdio/stdio.cmxa /home/tetef/.opam/4.11.0/lib/re/re.cmxa /home/tetef/.opam/4.11.0/lib/ppx_expect/matcher/expect_test_matcher.cmxa /home/tetef/.opam/4.11.0/lib/ppxlib/print_diff/ppxlib_print_diff.cmxa /home/tetef/.opam/4.11.0/lib/ppx_expect/evaluator/ppx_expect_evaluator.cmxa tests/variables_globales/placement/.variables_globales_placement.inline-tests/.variables_globales_placement.inline-tests.eobjs/native/dune__exe__Inline_test_runner_variables_globales_placement.cmx -linkall)
+$ (cd _build/default/tests/variables_globales/placement && .variables_globales_placement.inline-tests/inline_test_runner_variables_globales_placement.exe inline-test-runner variables_globales_placement -source-tree-root ../../.. -diff-cmd -)
+> File "tests/variables_globales/placement/test.ml", line 47, characters 2-99: test1_varGlob_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 50, characters 2-89: test1_x_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 53, characters 2-88: test2_x_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 56, characters 2-88: test2_y_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 59, characters 2-88: test2_z_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 62, characters 2-89: test2_t_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 65, characters 2-88: test3_x_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 68, characters 2-88: test3_y_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 71, characters 2-89: test3_z_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 74, characters 2-88: test4_x_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 77, characters 2-88: test4_y_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 80, characters 2-89: test4_z_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 83, characters 2-88: test5_x_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 86, characters 2-88: test5_y_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 89, characters 2-88: test5_z_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 92, characters 2-88: test6_x_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 95, characters 2-89: test6_y_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 98, characters 2-89: test6_z_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 101, characters 2-89: test6_y_2 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 104, characters 2-89: test6_z_2 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 107, characters 2-91: test6_x1_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 110, characters 2-88: test7_x_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> File "tests/variables_globales/placement/test.ml", line 113, characters 2-89: test7_y_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 116, characters 2-89: test7_z_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 119, characters 2-91: test7_x1_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 122, characters 2-91: test7_z1_1 is false.
+>
+> File "tests/variables_globales/placement/test.ml", line 125, characters 2-88: test9_x_1 threw Not_found.
+>   Raised at Stdlib__list.assoc in file "list.ml", line 191, characters 10-25
+>   Called from Variables_globales_placement__Test.test in file "tests/variables_globales/placement/test.ml", line 27, characters 14-35
+>
+> FAILED 27 / 29 tests
 [2]
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PrinterAst.cmo -c -impl printerAst.pp.ml)
-> File "printerAst.ml", line 95, characters 26-62:
-> 95 |   let string_of_programme (Programme (fonctions, instruction)) =
->                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> Error: The constructor Programme expects 3 argument(s),
->        but is applied here to 2 argument(s)
-[2]
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamldep.opt -modules -impl passePlacementRat.pp.ml) > _build/default/.rat.objs/rat__PassePlacementRat.impl.d
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamldep.opt -modules -impl passeCodeRatToTam.pp.ml) > _build/default/.rat.objs/rat__PasseCodeRatToTam.impl.d
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamldep.opt -modules -impl passeTdsRat.pp.ml) > _build/default/.rat.objs/rat__PasseTdsRat.impl.d
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamldep.opt -modules -impl passeTypeRat.pp.ml) > _build/default/.rat.objs/rat__PasseTypeRat.impl.d
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PassePlacementRat.cmo -c -impl passePlacementRat.pp.ml)
-> File "passePlacementRat.ml", line 3, characters 0-15:
-> 3 | open Exceptions
->     ^^^^^^^^^^^^^^^
-> Warning 33: unused open Rat.Exceptions.
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PasseCodeRatToTam.cmo -c -impl passeCodeRatToTam.pp.ml)
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PasseTdsRat.cmo -c -impl passeTdsRat.pp.ml)
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .rat.objs/byte -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -no-alias-deps -opaque -open Rat -o .rat.objs/byte/rat__PasseTypeRat.cmo -c -impl passeTypeRat.pp.ml)
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .rat.objs/byte -I .rat.objs/native -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Rat -o .rat.objs/native/rat__PassePlacementRat.cmx -c -impl passePlacementRat.pp.ml)
-> File "passePlacementRat.ml", line 3, characters 0-15:
-> 3 | open Exceptions
->     ^^^^^^^^^^^^^^^
-> Warning 33: unused open Rat.Exceptions.
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .rat.objs/byte -I .rat.objs/native -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Rat -o .rat.objs/native/rat__PasseTdsRat.cmx -c -impl passeTdsRat.pp.ml)
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .rat.objs/byte -I .rat.objs/native -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Rat -o .rat.objs/native/rat__PasseCodeRatToTam.cmx -c -impl passeCodeRatToTam.pp.ml)
-$ (cd _build/default && /home/tetef/.opam/4.11.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .rat.objs/byte -I .rat.objs/native -I /home/tetef/.opam/4.11.0/lib/base -I /home/tetef/.opam/4.11.0/lib/base/base_internalhash_types -I /home/tetef/.opam/4.11.0/lib/base/caml -I /home/tetef/.opam/4.11.0/lib/base/shadow_stdlib -I /home/tetef/.opam/4.11.0/lib/jane-street-headers -I /home/tetef/.opam/4.11.0/lib/ppx_compare/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_enumerate/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_expect/collector -I /home/tetef/.opam/4.11.0/lib/ppx_expect/common -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config -I /home/tetef/.opam/4.11.0/lib/ppx_expect/config_types -I /home/tetef/.opam/4.11.0/lib/ppx_hash/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_here/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/config -I /home/tetef/.opam/4.11.0/lib/ppx_inline_test/runtime-lib -I /home/tetef/.opam/4.11.0/lib/ppx_sexp_conv/runtime-lib -I /home/tetef/.opam/4.11.0/lib/sexplib0 -I /home/tetef/.opam/4.11.0/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Rat -o .rat.objs/native/rat__PasseTypeRat.cmx -c -impl passeTypeRat.pp.ml)

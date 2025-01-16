@@ -32,7 +32,7 @@
         "return",  RETURN;
         (* Pointeurs *)
         "new",     NEW;
-        "null",    NULL
+        "null",    NULL;
         (* Variables Globales *)
         "static",  STATIC
       ];
